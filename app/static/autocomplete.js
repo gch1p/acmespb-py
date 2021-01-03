@@ -25,10 +25,8 @@ class Autocomplete {
 
     field.addEventListener('click', (e) => {
       if (this.createItems() === 0) {
-        // prevent show empty
         e.stopPropagation();
         this.dropdown.hide();
-        // field.dropdown('hide');
       }
     });
 
@@ -51,13 +49,10 @@ class Autocomplete {
   }
 
   renderIfNeeded() {
-    if (this.createItems() > 0) {
+    if (this.createItems() > 0)
       this.dropdown.show();
-      // field.dropdown('show');
-    } else {
-      // sets up positioning
+    else
       this.field.click();
-    }
   }
 
   createItem(lookup, item) {
@@ -69,9 +64,8 @@ class Autocomplete {
       label = item.label.substring(0, idx)
         + `<span class="${className}">${item.label.substring(idx, idx + lookup.length)}</span>`
         + item.label.substring(idx + lookup.length, item.label.length);
-    } else {
+    } else
       label = item.label;
-    }
     return ce(`<button type="button" class="dropdown-item" data-value="${item.value}">${label}</button>`);
   }
 
@@ -79,7 +73,6 @@ class Autocomplete {
     const lookup = this.field.value;
     if (lookup.length < this.options.treshold) {
       this.dropdown.hide();
-      // field.dropdown('hide');
       return 0;
     }
 
@@ -101,12 +94,11 @@ class Autocomplete {
       item.addEventListener('click', (e) => {
         let dataValue = e.target.getAttribute('data-value');
         this.field.value = e.target.innerText;
-        if (this.options.onSelectItem) {
+        if (this.options.onSelectItem)
           this.options.onSelectItem({
             value: e.target.value,
             label: e.target.innerText,
           });
-        }
         this.dropdown.hide();
       })
     });

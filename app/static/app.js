@@ -141,7 +141,7 @@ class Maps {
       let html = `<b>${pharmacyName}</b><br>`;
       html += `${pharmacyAddress}<br>`;
       html += `тел: ${pharmacyPhone}<br><br>`;
-      html += lines.join('\n');
+      html += lines.join('<br>');
       mark.properties.set('balloonContent', html);
     });
     this.map.geoObjects.add(mark);
