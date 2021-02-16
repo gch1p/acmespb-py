@@ -18,7 +18,7 @@ proxies = {
 per_page = 50
 
 session = requests.Session()
-session.proxies.update(proxies)
+# session.proxies.update(proxies)
 session.headers.update(headers)
 
 
