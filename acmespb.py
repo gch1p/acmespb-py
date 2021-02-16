@@ -102,10 +102,13 @@ def offers(query, target_url=None, page=1):
     soup = BeautifulSoup(r.text, "html.parser")
     p = soup.find("p", class_="red")
     if p:
-        total_matches = int(re.findall("([0-9]+)", p.string)[0])
-        pages = math.ceil(total_matches / per_page)
+        try:
+            total_matches = int(re.findall("([0-9]+)", p.string)[0])
+            pages = math.ceil(total_matches / per_page)
+        except IndexError:
+            raise AcmeException(p.string)
 
-    offers = []
+    offer_list = []
     for trow in soup.find_all('div', class_='trow'):
         if 'thead' in trow['class']:
             continue
@@ -128,6 +131,6 @@ def offers(query, target_url=None, page=1):
         acmepharm = AcmePharmacy(name=phname, address=address, phone=phone, geo=geo)
         acmeoffer = AcmeOffer(name=name, country=country, price=price, pharmacy=acmepharm)
 
-        offers.append(acmeoffer)
+        offer_list.append(acmeoffer)
 
-    return target_url, pages, offers
+    return target_url, pages, offer_list

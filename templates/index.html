@@ -12,10 +12,10 @@
 
   <script src="https://api-maps.yandex.ru/2.1/?apikey=ce936229-3ef4-41b1-96c0-270bcf8ff341&lang=ru_RU" type="text/javascript"></script>
 
-  <script src="{{ url_for('static', filename='autocomplete.js') }}"></script>
-  <script src="{{ url_for('static', filename='app.js') }}"></script>
+  <script src="{{ url_for('static', filename='autocomplete.js') }}?1"></script>
+  <script src="{{ url_for('static', filename='app.js') }}?4"></script>
 
-  <title>{% block title %}{% endblock %}</title>
+  <title>ACMESPB здорового человека</title>
 </head>
 <body class="h-100 mh-100">
   <div class="container h-100 pt-4 pb-4">
@@ -23,7 +23,8 @@
       <div>
         <form class="mb-4" onsubmit="return false">
           <div class="input-group">
-            <input type="text" class="form-control" id="queryInput" placeholder="Введите название препарата" autocomplete="off">
+            <input type="text" class="col-sm-7 form-control" id="queryInput" placeholder="Введите название препарата" autocomplete="off" style="flex: 2 1 auto;">
+            <input type="text" class="form-control" id="filterInput" placeholder="Фильтр" autocomplete="off">
             <button type="submit" class="btn btn-outline-primary" id="querySubmit">Поиск</button>
           </div>
         </form>
